@@ -18,12 +18,44 @@
 # "9A4A2B4C2D"
 
 def runLengthEncoding(string):
-    # Write your code here.
-    print(string)
+    new_str = ""
+    count = 1
+    ptr = 0
+
+    # print("the string is currently: ", string, "------------")
+
+    while ptr < (len(string) - 1):
+        if string[ptr] == string[ptr + 1]:
+            if count < 9:
+                count += 1
+            else:
+                # count is 9, so add the character to the string and set count to 1
+                # add 9 to the string
+                # add the character to the string
+                new_str = add_to_string(string, new_str, 9, ptr)
+                count = 1
+        else:
+            new_str = add_to_string(string, new_str, count, ptr)
+            count = 1
+        ptr += 1
+
+    # this is the last character, so add the count & character to the string
+    new_str = add_to_string(string, new_str, count, ptr)
+
+    return new_str
+
+    pass
+
+def add_to_string(string, new_str, counter, pointer):
+    new_str += chr(counter + ord('0'))
+    new_str += string[pointer]
+    return(new_str)
     pass
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    runLengthEncoding('PyCharm')
+    print("The result is: ", runLengthEncoding('ABC'))
+    print("The result is: ", runLengthEncoding('bbb'))
+    print("The result is: ", runLengthEncoding('AAAAAAAAAAAAABBCCCCDD'))
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
